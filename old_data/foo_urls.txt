@@ -1,0 +1,9 @@
+https://cycling.data.tfl.gov.uk/usage-stats/100JourneyDataExtract07Mar2018-13Mar2018.csv
+https://cycling.data.tfl.gov.uk/usage-stats/101JourneyDataExtract14Mar2018-20Mar2018.csv
+https://cycling.data.tfl.gov.uk/usage-stats/102JourneyDataExtract21Mar2018-27Mar2018.csv
+https://cycling.data.tfl.gov.uk/usage-stats/103JourneyDataExtract28Mar2018-03Apr2018.csv
+https://cycling.data.tfl.gov.uk/usage-stats/104JourneyDataExtract04Apr2018-10Apr2018.csv
+https://cycling.data.tfl.gov.uk/usage-stats/105JourneyDataExtract11Apr2018-17Apr2018.csv
+https://cycling.data.tfl.gov.uk/usage-stats/106JourneyDataExtract18Apr2018-24Apr2018.csv
+https://cycling.data.tfl.gov.uk/usage-stats/107JourneyDataExtract25Apr2018-01May2018.csv
+https://cycling.data.tfl.gov.uk/usage-stats/108JourneyDataExtract02May2018-08May2018.csv

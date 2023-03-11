@@ -1,0 +1,11 @@
+{
+    Rental Id: int64,
+    Duration: int64,
+    Bike Id: int64,
+    End Date,
+    EndStation Id,
+    EndStation Name,
+    Start Date,
+    StartStation Id,
+    StartStation Name
+}
