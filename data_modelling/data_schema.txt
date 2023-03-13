@@ -1,11 +1,11 @@
-{
-    Rental Id: int64,
-    Duration: int64,
-    Bike Id: int64,
-    End Date,
-    EndStation Id,
-    EndStation Name,
-    Start Date,
-    StartStation Id,
-    StartStation Name
-}
+schema = StructType([
+    StructField('Rental Id', IntegerType(), True), 
+    StructField('Duration', DoubleType(), True), 
+    StructField('Bike Id', StringType(), True), 
+    StructField('End Date', TimestampType(), True), 
+    StructField('EndStation Id', StringType(), True), 
+    StructField('EndStation Name', StringType(), True), 
+    StructField('Start Date', TimestampType(), True), 
+    StructField('StartStation Id', StringType(), True), 
+    StructField('StartStation Name', StringType(), True)
+])

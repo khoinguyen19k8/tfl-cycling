@@ -14,6 +14,7 @@ pyarrow = "*"
 [dev-packages]
 jupyterlab = "*"
 black = "*"
+openpyxl = "*"
 
 [requires]
 python_version = "3.9"
