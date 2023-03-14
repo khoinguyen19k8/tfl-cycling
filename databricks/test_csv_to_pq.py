@@ -8,7 +8,12 @@ access_key = dbutils.secrets.get(scope = "tfl-workspace", key = "AWS_ACCESS_KEY_
 secret_key = dbutils.secrets.get(scope = "tfl-workspace", key = "AWS_SECRET_ACCESS_KEY")
 sc._jsc.hadoopConfiguration().set("fs.s3a.access.key", access_key)
 sc._jsc.hadoopConfiguration().set("fs.s3a.secret.key", secret_key)
-output_path = "s3://tfl-cycling/foo_pq/"
+
+input_path = dbutils.widgets.get("input_path")
+output_path = dbutils.widgets.get("output_path")
+
+#input_path = "s3://tfl-cycling/foo/"
+#output_path = "s3://tfl-cycling/foo_pq/"
 
 # COMMAND ----------
 
@@ -16,7 +21,7 @@ df = spark \
     .read \
     .option("header", "True") \
     .option("inferSchema", "True") \
-    .csv("s3://tfl-cycling/foo")
+    .csv(input_path)
 
 # COMMAND ----------
 
