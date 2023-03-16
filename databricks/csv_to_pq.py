@@ -49,7 +49,6 @@ df = df \
         "yyyy-MM-dd HH:mm"
     )
     ) \
-    .withColumn(, to_timestamp("Start Date", "dd/MM/yyyy HH:mm")) \
     .withColumn("StartStation Id", df["StartStation Id"].cast(IntegerType())) \
     .withColumn("StartStation Name", df["StartStation Name"].cast(StringType()))
 
