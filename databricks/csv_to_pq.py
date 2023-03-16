@@ -1,5 +1,5 @@
 # Databricks notebook source
-from pyspark.sql.functions import to_timestamp
+from pyspark.sql.functions import to_timestamp, date_format, coalesce
 from pyspark.sql.types import StructType, StructField, IntegerType, DoubleType, StringType, TimestampType
 
 # COMMAND ----------
@@ -27,10 +27,29 @@ df = df \
     .withColumn("Rental Id", df["Rental Id"].cast(IntegerType())) \
     .withColumn("Duration", df["Duration"].cast(DoubleType())) \
     .withColumn("Bike Id", df["Bike Id"].cast(IntegerType())) \
-    .withColumn("End Date", to_timestamp("End Date", "dd/MM/yyyy HH:mm")) \
+    .withColumn(
+    "End Date", 
+    date_format(
+        coalesce(
+            to_timestamp("End Date", "dd/MM/yyyy HH:mm"), 
+            to_timestamp("End Date", "dd/MM/yyyy HH:mm:ss")
+        ), 
+        "yyyy-MM-dd HH:mm"
+    )
+    ) \
     .withColumn("EndStation Id", df["EndStation Id"].cast(IntegerType())) \
     .withColumn("EndStation Name", df["EndStation Name"].cast(StringType())) \
-    .withColumn("Start Date", to_timestamp("Start Date", "dd/MM/yyyy HH:mm")) \
+    .withColumn(
+    "Start Date", 
+    date_format(
+        coalesce(
+            to_timestamp("Start Date", "dd/MM/yyyy HH:mm"), 
+            to_timestamp("Start Date", "dd/MM/yyyy HH:mm:ss")
+        ), 
+        "yyyy-MM-dd HH:mm"
+    )
+    ) \
+    .withColumn(, to_timestamp("Start Date", "dd/MM/yyyy HH:mm")) \
     .withColumn("StartStation Id", df["StartStation Id"].cast(IntegerType())) \
     .withColumn("StartStation Name", df["StartStation Name"].cast(StringType()))
 
