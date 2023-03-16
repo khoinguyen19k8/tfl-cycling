@@ -1,6 +1,7 @@
 # Databricks notebook source
 from pyspark.sql.functions import to_timestamp, date_format, coalesce
 from pyspark.sql.types import StructType, StructField, IntegerType, DoubleType, StringType, TimestampType
+spark.sql("set spark.sql.legacy.timeParserPolicy=LEGACY")
 
 # COMMAND ----------
 
@@ -23,32 +24,20 @@ df = spark \
 
 # COMMAND ----------
 
+def to_date_(col, formats=("d/M/yyyy H:mm", "d/M/yyyy H:mm:ss")):
+    # Spark 2.2 or later syntax, for < 2.2 use unix_timestamp and cast
+    return coalesce(*[to_timestamp(col, f) for f in formats])
+
+# COMMAND ----------
+
 df = df \
     .withColumn("Rental Id", df["Rental Id"].cast(IntegerType())) \
     .withColumn("Duration", df["Duration"].cast(DoubleType())) \
     .withColumn("Bike Id", df["Bike Id"].cast(IntegerType())) \
-    .withColumn(
-    "End Date", 
-    date_format(
-        coalesce(
-            to_timestamp("End Date", "dd/MM/yyyy HH:mm"), 
-            to_timestamp("End Date", "dd/MM/yyyy HH:mm:ss")
-        ), 
-        "yyyy-MM-dd HH:mm"
-    )
-    ) \
+    .withColumn("End Date", to_date_("End Date")) \
     .withColumn("EndStation Id", df["EndStation Id"].cast(IntegerType())) \
     .withColumn("EndStation Name", df["EndStation Name"].cast(StringType())) \
-    .withColumn(
-    "Start Date", 
-    date_format(
-        coalesce(
-            to_timestamp("Start Date", "dd/MM/yyyy HH:mm"), 
-            to_timestamp("Start Date", "dd/MM/yyyy HH:mm:ss")
-        ), 
-        "yyyy-MM-dd HH:mm"
-    )
-    ) \
+    .withColumn("Start Date", to_date_("Start Date")) \
     .withColumn("StartStation Id", df["StartStation Id"].cast(IntegerType())) \
     .withColumn("StartStation Name", df["StartStation Name"].cast(StringType()))
 
