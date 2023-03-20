@@ -1,11 +1,11 @@
 schema = StructType([
     StructField('Rental Id', IntegerType(), True), 
     StructField('Duration', DoubleType(), True), 
-    StructField('Bike Id', StringType(), True), 
+    StructField('Bike Id', IntegerType(), True), 
     StructField('End Date', TimestampType(), True), 
-    StructField('EndStation Id', StringType(), True), 
+    StructField('EndStation Id', IntegerType(), True), 
     StructField('EndStation Name', StringType(), True), 
     StructField('Start Date', TimestampType(), True), 
-    StructField('StartStation Id', StringType(), True), 
+    StructField('StartStation Id', IntegerType(), True), 
     StructField('StartStation Name', StringType(), True)
 ])
