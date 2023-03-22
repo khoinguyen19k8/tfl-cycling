@@ -1,7 +1,5 @@
-import logging
 from datetime import datetime
 from pathlib import Path
-from typing import Dict
 from airflow.decorators import dag, task
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.operators.python import get_current_context
