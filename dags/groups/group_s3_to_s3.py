@@ -1,4 +1,3 @@
-import logging
 from datetime import datetime
 from pathlib import Path
 from airflow.decorators import task, task_group
