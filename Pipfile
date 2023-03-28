@@ -11,6 +11,7 @@ boto3 = "*"
 regex-engine = "*"
 pyarrow = "*"
 databricks-cli = "*"
+apache-airflow = {extras = ["databricks"], version = "*"}
 
 [dev-packages]
 jupyterlab = "*"
