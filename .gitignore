@@ -1,6 +1,7 @@
 data/
 logs/
 dags/__pycache__/
+dags/groups/__pycache__/
 .ipynb_checkpoints/
 .env
 127JourneyDataExtract12Sep2018-18Sep2018.csv
