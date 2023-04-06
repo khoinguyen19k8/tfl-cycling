@@ -8,7 +8,7 @@ from groups.group_s3_to_s3 import s3_to_s3
 
 
 @dag(schedule=None, start_date=datetime(2023, 1, 1), catchup=False)
-def initial_tfl_cycling():
+def initial_extract_s3_to_pq():
     """
     Initial ETL to extract csv data from cycling.data.tfl.gov.uk, load into personal S3, then transform them into parquet files
     using databricks jobs.
@@ -30,4 +30,4 @@ def initial_tfl_cycling():
     s3_to_s3() >> clean_up_parquets >> csv_to_pq
 
 
-initial_tfl_cycling()
+initial_extract_s3_to_pq()

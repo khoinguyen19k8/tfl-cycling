@@ -8,7 +8,7 @@ from airflow.operators.bash import BashOperator
 
 
 @dag(schedule="@monthly", start_date=datetime(2023, 4, 1), catchup=False)
-def incremental_tfl_cycling():
+def incremental_extract_s3_to_pq():
     """
     Incremental ETL to sync csv data from cycling.data.tfl.gov.uk on a monthly basis, load into personal S3, then transform them into parquet files
     using databricks jobs.
@@ -34,4 +34,4 @@ def incremental_tfl_cycling():
     s3_sync >> clean_up_parquets >> csv_to_pq
 
 
-incremental_tfl_cycling()
+incremental_extract_s3_to_pq()
