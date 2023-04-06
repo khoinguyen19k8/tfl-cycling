@@ -1,5 +1,6 @@
 from datetime import datetime
 from pathlib import Path
+import json
 from airflow.decorators import dag
 from airflow.providers.amazon.aws.operators.s3 import S3DeleteObjectsOperator
 from airflow.providers.databricks.operators.databricks import DatabricksRunNowOperator
@@ -16,7 +17,8 @@ def incremental_extract_s3_to_pq():
 
     s3_sync = BashOperator(
         task_id="s3_sync",
-        bash_command="aws s3 sync {{ dag_run.conf['src_bucket'] }}/{{ dag_run.conf['src_prefix'] }}  {{ dag_run.conf['dest_bucket'] }}/{{ dag_run.conf['dest_prefix'] }} --exclude '*' --include '*.csv'",
+        bash_command="AWS_ACCESS_KEY_ID={{ conn.aws_default.login }} AWS_SECRET_ACCESS_KEY={{ conn.aws_default.password }} AWS_DEFAULT_REGION={{ conn.aws_default.extra_dejson['region_name'] }} \
+            aws s3 sync s3://{{ dag_run.conf['src_bucket'] }}/{{ dag_run.conf['src_prefix'] }} s3://{{ dag_run.conf['dest_bucket'] }}/{{ dag_run.conf['dest_prefix'] }} --exclude '*' --include '*.csv'",
     )
     clean_up_parquets = S3DeleteObjectsOperator(
         task_id="clean_up_parquets",
