@@ -1,0 +1,8 @@
+{
+    "src_bucket": "cycling.data.tfl.gov.uk",
+    "dest_bucket": "tfl-cycling",
+    "src_prefix": "usage-stats",
+    "dest_prefix": "usage-stats",
+    "parquet_bucket": "tfl-cycling",
+    "parquet_prefix": "pq"
+}

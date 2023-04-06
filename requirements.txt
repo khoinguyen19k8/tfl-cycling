@@ -1,0 +1,6 @@
+SQLAlchemy
+apache-airflow-providers-common-sql
+snowflake-connector-python
+snowflake-sqlalchemy
+apache-airflow-providers-databricks[common.sql]
+apache-airflow-providers-snowflake
