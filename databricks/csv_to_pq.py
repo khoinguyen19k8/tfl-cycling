@@ -61,6 +61,19 @@ assert(df.schema == schema)
 
 # COMMAND ----------
 
+df = df \
+    withColumnRenamed("Rental Id", "rental_id") \
+    withColumnRenamed("Duration", "duration") \
+    withColumnRenamed("Bike Id", "bike_id") \
+    withColumnRenamed("End Date", "end_date") \
+    withColumnRenamed("EndStation Id", "end_station_id") \
+    withColumnRenamed("EndStation Name", "end_station_name") \
+    withColumnRenamed("Start Date", "start_date") \
+    withColumnRenamed("StartStation Id", "start_station_id") \
+    withColumnRenamed("StartStation Name", "start_station_name")
+
+# COMMAND ----------
+
 df \
     .repartition(num_partitions) \
     .write \
