@@ -23,7 +23,7 @@ RAW dataset record count: ~84.4 million rows.
 
 Below is a high-level description of the architecture. The pipeline checks for new data in the cycling.data.tfl.gov.uk bucket every month and loads new data into an S3 bucket. New data is then processed with Databricks + Pyspark then loaded into Snowflake. The project utilises Infrastructure as code (IaC) with Terraform to provision cloud infrastructure.
 
-![Alt text](images/tfl-cycling-overall_architecture.drawio.png)
+![Alt text](images/tfl-cycling-architecture.drawio.png)
 
 # Snowflake dashboard
 
