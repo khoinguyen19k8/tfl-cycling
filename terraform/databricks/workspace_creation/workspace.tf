@@ -9,12 +9,12 @@ resource "databricks_mws_workspaces" "this" {
   credentials_id           = databricks_mws_credentials.this.credentials_id
   storage_configuration_id = databricks_mws_storage_configurations.this.storage_configuration_id
   network_id               = databricks_mws_networks.this.network_id
+
+  token {
+    comment = "default token"
+  }
 }
 
-// Capture the Databricks workspace's URL.
-output "databricks_host" {
-  value = databricks_mws_workspaces.this.workspace_url
-}
 
 // Initialize the Databricks provider in "normal" (workspace) mode.
 // See https://registry.terraform.io/providers/databricks/databricks/latest/docs#authentication
@@ -26,15 +26,14 @@ provider "databricks" {
   host  = databricks_mws_workspaces.this.workspace_url
 }
 
-// Create a Databricks personal access token, to provision entities within the workspace.
-resource "databricks_token" "pat" {
-  provider         = databricks.created_workspace
-  comment          = "Terraform Provisioning"
-  lifetime_seconds = 86400
+
+// Capture the Databricks workspace's URL.
+output "databricks_host" {
+  value = databricks_mws_workspaces.this.workspace_url
 }
 
-// Export the Databricks personal access token's value, for integration tests to run on.
+// Export the Databricks personal access token's value.
 output "databricks_token" {
-  value     = databricks_token.pat.token_value
+  value     = databricks_mws_workspaces.this.token[0].token_value
   sensitive = true
 }
